@@ -26,11 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts.apps.AccountsConfig',
     'task_management.apps.TaskManagementConfig',
     'learning.apps.LearningConfig',
     'exam.apps.ExamConfig',
     'ai_support.apps.AiSupportConfig',
-    'traning_data.apps.TrainingDataConfig',
+    'training_data.apps.TrainingDataConfig',
 ]
 
 MIDDLEWARE = [
