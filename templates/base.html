@@ -1,0 +1,48 @@
+{% load static %}
+
+<html lang='ja'>
+    <head>
+        <meta charset='utf-8'>
+
+        <title>{% block title %}{% endblock title %}</title>
+
+        <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
+        {% block head %}{% endblock head %}
+    </head>
+    <body>
+        <div id='wrapper'>
+
+            <!-- Navigation -->
+            <nav>
+                <div>
+                    <a href="">ASCENSION</a>
+                    <div>
+                        <ul>
+                            <li>
+                                <a href="">Sign In</a>
+                            </li>
+                            <li>
+                                <a href="">Log In</a>
+                            </li>
+                            <li>
+                                <a href="">Inquiry</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            {% block header %}{% endblock header %}
+
+            {% block contents %}{% endblock contents %}
+
+            <!-- Footer -->
+             <footer>
+                <div>
+                    <div>ASCENSION -akinkat-</div>
+                </div>
+             </footer>
+
+        </div>
+    </body>
+</html>
