@@ -8,3 +8,6 @@ SECRET_KEY = 'django-insecure-f^-y_%*r0lwj3n$db)@a0v1t9x=bf4tf(ia@(pn6!$=zuz-5ie
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# メール送信関連
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

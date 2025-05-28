@@ -29,6 +29,12 @@ INSTALLED_APPS = [
     'exam.apps.ExamConfig',
     'ai_support.apps.AiSupportConfig',
     'training_data.apps.TrainingDataConfig',
+    
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -120,5 +128,34 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+
+# allauth
+SITE_ID = 1
+
+# 認証バックエンド
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Django標準の認証
+    'allauth.account.auth_backends.AuthenticationBackend',  # allauthの認証
+]
+
+# メールアドレス認証に変更
+ACCOUNT_LOGIN_METHODS = {'email'}
+
+# サインアップにメールアドレス認証を挟む
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+
+# ログイン/ログアウト後のリダイレクト先
+LOGIN_REDIRECT_URL = 'task_management:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# ログアウトリンク1回クリックでログアウト
+ACCOUNT_LOGOUT_ON_GET = True
+
+# django-allauthが送信するメール件名の接頭辞をブランクにする
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+
+# デフォルトのメール送信元
+DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
